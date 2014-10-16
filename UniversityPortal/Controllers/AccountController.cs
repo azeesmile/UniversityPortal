@@ -147,9 +147,19 @@ namespace UniversityPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            DateTime dateCreated = new DateTime();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    FirstName = model.FirstName,
+                    MiddleName = model.MiddleName,
+                    LastName = model.LastName,
+                    DateOfBirth = model.DateOfBirth,
+                    CreatedAt = dateCreated,
+                    UserName = model.Email,
+                    Email = model.Email
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

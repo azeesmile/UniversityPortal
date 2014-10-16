@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using UniversityPortal.Common;
 
 namespace UniversityPortal.Models
 {
@@ -46,8 +47,8 @@ namespace UniversityPortal.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "Reg Number")]
+        [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
         public string Email { get; set; }
 
         [Required]
@@ -62,8 +63,8 @@ namespace UniversityPortal.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
+        [Display(Name = "Reg Number")]
         public string Email { get; set; }
 
         [Required]
@@ -76,13 +77,31 @@ namespace UniversityPortal.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Middle Name")]
+        public string MiddleName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Date Of Birth")]
+        [DataType(DataType.Date)]
+        public System.DateTime DateOfBirth { get; set; }
+
+        [Required]
+        public System.DateTime CreatedAt { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
+        [Display(Name = "Reg Number")]
         public string Email { get; set; }
 
         [Required]

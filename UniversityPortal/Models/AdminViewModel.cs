@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using UniversityPortal.Common;
 
 namespace UniversityPortal.Models
 {
@@ -17,10 +18,28 @@ namespace UniversityPortal.Models
         public string Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "Reg Number")]
+        [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
         public string Email { get; set; }
 
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Middle Name")]
+        public string MiddleName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Date Of Birth")]
+        [DataType(DataType.Date)]
+        public System.DateTime? DateOfBirth { get; set; }
+
+        [Required]
+        public System.DateTime CreatedAt { get; set; }
         public IEnumerable<SelectListItem> RolesList { get; set; }
     }
 }

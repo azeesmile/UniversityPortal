@@ -12,7 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            <p>Name</p>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
         </th>
         <th>
 
@@ -24,6 +30,16 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @*Add table data for the Name info:*@
+                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.Display(" ")
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @*Add table data for the Data of birth info:*@
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

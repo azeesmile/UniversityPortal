@@ -88,9 +88,19 @@ namespace UniversityPortal.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
         {
+            var dateCreated = DateTime.Now;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
+                var user = new ApplicationUser
+                {
+                    FirstName = userViewModel.FirstName,
+                    MiddleName = userViewModel.MiddleName,
+                    LastName = userViewModel.LastName,
+                    DateOfBirth = userViewModel.DateOfBirth,
+                    CreatedAt = dateCreated,
+                    UserName = userViewModel.Email,
+                    Email = userViewModel.Email
+                };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles 
@@ -181,6 +191,10 @@ namespace UniversityPortal.Controllers
             {
                 Id = user.Id,
                 Email = user.Email,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                DateOfBirth = user.DateOfBirth,
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
@@ -194,7 +208,7 @@ namespace UniversityPortal.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,FirstName,MiddleName,LastName,DateOfBirth")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -206,6 +220,10 @@ namespace UniversityPortal.Controllers
 
                 user.UserName = editUser.Email;
                 user.Email = editUser.Email;
+                user.FirstName = editUser.FirstName;
+                user.MiddleName = editUser.MiddleName;
+                user.LastName = editUser.LastName;
+                user.DateOfBirth = editUser.DateOfBirth;
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 

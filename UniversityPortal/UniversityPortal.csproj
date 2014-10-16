@@ -378,6 +378,7 @@
     <Compile Include="Areas\FrontEnd\Controllers\NewsAndEventsController.cs" />
     <Compile Include="Areas\FrontEnd\Controllers\ServicesController.cs" />
     <Compile Include="Areas\FrontEnd\FrontEndAreaRegistration.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -20,9 +20,9 @@ namespace UniversityPortal.Models
         }
 
         public string FirstName { get; set; }
-        public string MidleName { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public System.DateTime? DateOfBirth { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
 
     }
