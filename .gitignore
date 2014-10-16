@@ -6,6 +6,8 @@
 *.user
 *.sln.docstates
 
+
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -131,6 +133,7 @@ publish/
 *.publishproj
 
 # NuGet Packages
+packages/
 *.nupkg
 # The packages folder can be ignored because of Package Restore
 **/packages/*

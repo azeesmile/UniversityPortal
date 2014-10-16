@@ -98,7 +98,7 @@ namespace UniversityPortal.Controllers
                     LastName = userViewModel.LastName,
                     DateOfBirth = userViewModel.DateOfBirth,
                     CreatedAt = dateCreated,
-                    UserName = userViewModel.FirstName + " " + userViewModel.MiddleName,
+                    UserName = userViewModel.UserName,
                     Email = userViewModel.Email
                 };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);

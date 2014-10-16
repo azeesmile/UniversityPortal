@@ -76,7 +76,7 @@ namespace UniversityPortal.Controllers
             // To enable password failures to trigger lockout, change to shouldLockout: true
                 var result =
                     await
-                        SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,
+                        SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe,
                             shouldLockout: false);
             switch (result)
             {
@@ -256,7 +256,7 @@ namespace UniversityPortal.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.UserName);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -375,7 +375,7 @@ namespace UniversityPortal.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { /*UserName = model.UserName,*/ Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

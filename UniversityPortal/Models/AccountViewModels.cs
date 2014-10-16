@@ -7,7 +7,7 @@ namespace UniversityPortal.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Reg Number")]
         public string Email { get; set; }
     }
 
@@ -49,7 +49,7 @@ namespace UniversityPortal.Models
         [Required]
         [Display(Name = "Reg Number")]
         [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -65,6 +65,11 @@ namespace UniversityPortal.Models
         [Required]
         [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
         [Display(Name = "Reg Number")]
+        public string UserName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -102,7 +107,7 @@ namespace UniversityPortal.Models
         [Required]
         [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
         [Display(Name = "Reg Number")]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

@@ -115,7 +115,7 @@ namespace UniversityPortal.Models
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
             const string name = "2010-UET-GDCB-LHR-100";
-            const string username = "Administrator";
+            //const string username = "Administrator";
             const string password = "Admin@123456";
             const string roleName = "Admin";
 
@@ -128,7 +128,7 @@ namespace UniversityPortal.Models
 
             var user = userManager.FindByName(name);
             if (user == null) {
-                user = new ApplicationUser { UserName = username, Email = name };
+                user = new ApplicationUser { UserName = name };
                 var result = userManager.Create(user, password);
                 result = userManager.SetLockoutEnabled(user.Id, false);
             }
@@ -154,6 +154,6 @@ namespace UniversityPortal.Models
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
-        }
+        }       
     }
 }
