@@ -2,231 +2,389 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET Identity</h1>
-    <p class="lead">ASP.NET Identity is the membership system for ASP.NET apps. Following are the features of ASP.NET Identity in this sample application.</p>
-    <p><a href="http://www.asp.net/identity" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+@*@section LogoAndHeader
+{
+    @Html.Partial("~/Views/Shared/PartialViews/_MainHeaderPartial.cshtml")
+    }*@
 
-<div class="row">
-    <div class="col-md-4">
-        <dl>
-            <dt>Initialize ASP.NET Identity</dt>
-            <dd>
-                You can initialize ASP.NET Identity when the application starts. Since ASP.NET Identity is Entity Framework based in this sample,
-                you can create DatabaseInitializer which is configured to get called each time the app starts.
-                <strong>Please look in App_Start\IdentityConfig.cs</strong>
-                This code shows the following
-                <ul>
-                    <li>When should the Initializer run and when should the database be created</li>
-                    <li>Create Admin user</li>
-                    <li>Create Admin role</li>
-                    <li>Add Admin user to Admin role</li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Add profile data for the user</dt>
-            <dd>
-                <a href="http://blogs.msdn.com/b/webdev/archive/2013/10/16/customizing-profile-information-in-asp-net-identity-in-vs-2013-templates.aspx">Please follow this tutorial.</a>
 
-                <ul>
-                    <li>Add profile information in the Users Table</li>
-                    <li>Look in Models\IdentityModels.cs for examples</li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Validation</dt>
-            <dd>
-                When you create a User using a username or password, the Identity system performs validation on the username and password, and the passwords are hashed before they are
-                stored in the database. You can customize the validation by changing some of the properties of the validators such as Turn alphanumeric on/off, set minimum password length
-                or you can write your own custom validators and register them with the UserManager.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Register a user and login</dt>
-            <dd>
-                Click @Html.ActionLink("Register", "Register", "Account") and see the code in AccountController.cs and Register Action.
-                Click @Html.ActionLink("Log in", "Login", "Account") and see the code in AccountController.cs and Login Action.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Social Logins</dt>
-            <dd>
-                You can the support so that users can login using their Facebook, Google, Twitter, Microsoft Account and more.
-            </dd>
-            <dd>
-                <ul>
-                    <li>
-                        <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/">Add Social Logins</a>
-                    </li>
-                    <li>
-                        <a href="http://blogs.msdn.com/b/webdev/archive/2013/10/16/get-more-information-from-social-providers-used-in-the-vs-2013-project-templates.aspx">Get more data about the user when they login suing Facebook</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Basic User Management</dt>
-            <dd>
-                Do Create, Update, List and Delete Users.
-                Assign a Role to a User.
-                Only Users In Role Admin can access this page. This uses the [Authorize(Roles = "Admin")] on the UserAdmin controller.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Basic Role Management</dt>
-            <dd>
-                Do Create, Update, List and Delete Roles.
-                Only Users In Role Admin can access this page. This authorization is doen by using the [Authorize(Roles = "Admin")] on the RolesAdmin controller.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Account Confirmation</dt>
-            <dd>
-                When you register a new account, you will be sent an email confirmation.
-                You can use an email service such as <a href="http://www.windowsazure.com/en-us/documentation/articles/sendgrid-dotnet-how-to-send-email/">SendGrid</a> which integrate nicely with Windows Azure and requires no configuration or
-                set up an SMTP server to send email.
-                You can send email using the EmailService which is registered in App_Start\IdentityConfig.cs
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Two-Factor Authentication</dt>
-            <dd>
-                This sample shows how you can use Two-Factor authentication. This sample has a SMS and email service registered where you can send SMS or email for sending the security code.
-                You can add more two-factor authentication factors such as QR codes and plug them into ASP.NET Identity.
-                <ul>
-                    <li>
-                        You can use a SMS using <a href="https://www.twilio.com/">Twilio</a> or use any means of sending SMS. Please <a href="https://www.twilio.com/docs/quickstart/csharp/sms/sending-via-rest">read</a> for more details on using Twilio.
-                        You can send SMS using the SmsService which is registered in App_Start\IdentityConfig.cs
-                    </li>
-                    <li>
-                        You can use an email service such as <a href="http://www.windowsazure.com/en-us/documentation/articles/sendgrid-dotnet-how-to-send-email/">SendGrid</a> or
-                        set up an SMTP server to send email.
-                        You can send email using the EmailService which is registered in App_Start\IdentityConfig.cs
-                    </li>
 
-                    <li>
-                        When you login, you can add a phone number by clicking the Manage page.
-                    </li>
-                    <li>
-                        Once you add a phone number and have the Phone service hooked to send a SMS, you will get a code through SMS to confirm your phone number.
-                    </li>
-                    <li>
-                        In the Manage page, you can turn on Two-Factor authentication.
-                    </li>
-                    <li>
-                        When you logout and login, after you enter the username and password, you will get an option of how to get the security code to use for two-factor authentication.
-                    </li>
-                    <li>
-                        You can copy the code from your SMS or email and enter in the form to login.
-                    </li>
-                    <li>
-                        The sample also shows how to protect against Brute force attacks against two-factor codes. When you enter a code incorrectly for 5 times then you will be
-                        lockedout for 5 min before you can enter a new code. These settings can be configured in App_Start\IdentityConfig.cs by setting  DefaultAccountLockoutTimeSpan and MaxFailedAccessAttemptsBeforeLockout on the UserManager.
-                    </li>
-                    <li>
-                        If the machine you are browsing this website is your own machine, you can choose to check the "Remember Me" option after you enter the code.
-                        This option will remember you forever on this machine and will not ask you for the two-factor authentication, the next time when you login to the website.
-                        You can change your "Remember Me" settings for two-factor authentication in the Manage page.
-                    </li>
-                </ul>
-            </dd>
-        </dl>
+@*@section SideMenu
+{
+    @Html.Partial("~/Views/Shared/PartialViews/_MenuAdminPartial.cshtml")
+    }*@
+
+<div class="mainy">
+    <!-- Page title -->
+    <div class="page-title">
+        <h2><i class="fa fa-desktop color"></i> Dashboard <small>Subtext for header</small></h2>
+        <hr>
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Account Lockout</dt>
-            <dd>
-                Provide a way to Lockout out the user if the user enters their password or two-factor codes incorrectly.
-                The number of invalid attempts and the timespan for the users are locked out can be configured.
-                A developer can optionally turn off Account Lockout for certain user accounts should they need to.
-            </dd>
-            <ul>
-                <li>Account LockOut settings can be configured in the UserManager in IdentityConfig.cs</li>
-            </ul>
-        </dl>
+    <!-- Page title -->
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="awidget full-width">
+                <div class="awidget-head">
+                    <h3>Today's Status</h3>
+                </div>
+                <div class="awidget-body">
+                    <div class="chart-container">
+                        <div id="home-chart" class="chart-placeholder" style="padding: 0px; position: relative;"><canvas class="flot-base" width="862" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 862px; height: 300px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 14px; text-align: center;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 131px; text-align: center;">5</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 245px; text-align: center;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 362px; text-align: center;">15</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 479px; text-align: center;">20</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 595px; text-align: center;">25</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 712px; text-align: center;">30</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 95px; top: 275px; left: 829px; text-align: center;">35</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 258px; left: 6px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 215px; left: 0px; text-align: right;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 172px; left: 0px; text-align: right;">20</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 129px; left: 0px; text-align: right;">30</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 86px; left: 0px; text-align: right;">40</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 43px; left: 0px; text-align: right;">50</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 0px; text-align: right;">60</div></div></div><canvas class="flot-overlay" width="862" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 862px; height: 300px;"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Security Token provider</dt>
-            <dd>
-                Support a way to regenerate the Security Token for the user in cases when the User changes there password or any other security related information such as removing an associated login(such as Facebook, Google, Microsoft Account etc).
-                This is needed to ensure that any tokens generated with the old password are invalidated. In the sample project, if you change the users password then a new token is generated for the user and any previous tokens are invalidated.
-                This feature provides an extra layer of security to your application since when you change your password, you will be logged out from everywhere (all other browsers) where you have logged into this application.
-            </dd>
-            <dd>
-                <ul>
-                    <li>The provider is registered when you add CookieAuthentication in StartupAuth to your application.</li>
-                </ul>
-            </dd>
-        </dl>
+
+    <!-- Admin hero. Peity bar plugin used -->
+
+    <div class="admin-hero">
+        <ul class="list-inline">
+            <li>
+                <span class="peity-bar" style="display: none;">10,12,14,16,26,23,20,18,16,13,-10,-13,-20,-18,10,12,14,11,10,12,14,22,26,23,20,18</span><canvas class="peity" height="50" width="100" style="height: 50px; width: 100px;"></canvas>
+                <hr>
+                <h2>610% <span class="label label-danger"><i class="fa fa-angle-double-up"></i></span></h2>
+            </li>
+            <li>
+                <span class="peity-bar" style="display: none;">13,-10,-13,-20,-18,10,12,10,12,14,16,26,23,20,18,16,14,11,10,12,14,22,26,23,20,18</span><canvas class="peity" height="50" width="100" style="height: 50px; width: 100px;"></canvas>
+                <hr>
+                <h2>40% <span class="label label-warning"><i class="fa fa-angle-double-down"></i></span></h2>
+            </li>
+            <li>
+                <span class="hero-icon"><i class="fa fa-group"></i></span>
+                <hr>
+                <h2>200 <span class="label label-success"><i class="fa fa-user"></i></span></h2>
+            </li>
+            <li>
+                <span class="hero-icon"><i class="fa fa-calendar"></i></span>
+                <hr>
+                <h2>30% <span class="label label-warning"><i class="fa fa-angle-double-up"></i></span></h2>
+            </li>
+            <li>
+                <span class="peity-bar" style="display: none;">10,12,14,16,26,23,20,18,16,13,-10,-13,-20,-18,10,12,14,11,10,12,14,22,26,23,20,18</span><canvas class="peity" height="50" width="100" style="height: 50px; width: 100px;"></canvas>
+                <hr>
+                <h2>$20000 <span class="label label-danger"><i class="fa fa-angle-double-up"></i></span></h2>
+            </li>
+        </ul>
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Password Reset</dt>
-            <dd>
-                Allows the user to reset their passwords if they have forgotten their password. In this sample users need to confirm their email before they can reset their passwords.
-            </dd>
-        </dl>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <!-- Chat widget -->
+            <div class="awidget">
+                <div class="awidget-head">
+                    <h3>Chat Widget</h3>
+                </div>
+                <div class="awidget-body">
+                    <ul class="chats">
+
+                        <!-- Chat by us. Use the class "by-me". -->
+                        <li class="by-me">
+                            <!-- Use the class "pull-left" in avatar -->
+                            <div class="avatar pull-left">
+                                <img src="img/user.jpg" alt="" class="img-responsive">
+                            </div>
+
+                            <div class="chat-content">
+                                <!-- In meta area, first include "name" and then "time" -->
+                                <div class="chat-meta">Ashok <span class="pull-right">3 hours ago</span></div>
+                                Vivamus diam elit diam, consectetur dapibus adipiscing elit.
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <!-- Chat by other. Use the class "by-other". -->
+                        <li class="by-other">
+                            <!-- Use the class "pull-right" in avatar -->
+                            <div class="avatar pull-right">
+                                <img src="img/user.jpg" alt="" class="img-responsive">
+                            </div>
+
+                            <div class="chat-content">
+                                <!-- In the chat meta, first include "time" then "name" -->
+                                <div class="chat-meta">3 hours ago <span class="pull-right">Ravi</span></div>
+                                Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <li class="by-me">
+                            <div class="avatar pull-left">
+                                <img src="img/user.jpg" alt="" class="img-responsive">
+                            </div>
+
+                            <div class="chat-content">
+                                <div class="chat-meta">Ashok <span class="pull-right">4 hours ago</span></div>
+                                Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                    <hr>
+                    <!-- Chat input box -->
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button">Send</button>
+                        </span>
+                    </div><!-- /input-group -->
+                    <br>
+                </div>
+            </div>
+            <!-- Chat widget -->
+
+        </div>
+
+        <!-- Quick post widget -->
+        <div class="col-md-6">
+            <div class="awidget">
+                <div class="awidget-head">
+                    <h3>Quick Post</h3>
+                </div>
+                <div class="awidget-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Title</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" placeholder="Enter Title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Content</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" rows="3" placeholder="Enter Content"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Category</label>
+                            <div class="col-lg-10">
+                                <select class="form-control">
+                                    <option>General</option>
+                                    <option>Web Designing</option>
+                                    <option>Software Designing</option>
+                                    <option>UI/UX</option>
+                                    <option>Android App</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Tags</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" placeholder="Enter Tags">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Publish Immediatly
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button type="submit" class="btn btn-danger">Publish</button>
+                                <button type="submit" class="btn btn-success">Save Draft</button>
+                                <button type="submit" class="btn btn-default">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Quick post widget -->
+
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Custom Storage providers</dt>
-            <dd>
-                You can extend ASP.NET Identity to write your own custom storage provider for storing the ASP.NET Identity system and user data
-                in a persistance system of your choice such as MondoDb, RavenDb, Azure Table Storage etc.
-            </dd>
-            <dd>
-                <ul>
-                    <li>
-                        <a href="http://www.asp.net/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity">
-                            learn more on how to implement your own storage provider
-                        </a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <!-- Project widget -->
+            <div class="awidget">
+                <div class="awidget-head">
+                    <h3>Projects</h3>
+                </div>
+                <div class="awidget-body">
+                    <ul class="project">
+
+                        <li>
+                            <p>
+                                <!-- Checkbox -->
+                                <input value="check1" type="checkbox">
+                                <!-- Name -->
+                                Hospital Management System
+                            </p>
+
+                            <p class="p-meta">
+                                <!-- Due date & % Completed -->
+                                <span>Due : 26/2/2012 - 80% Done</span>
+                            </p>
+
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <p>
+                                <!-- Checkbox -->
+                                <input value="check1" type="checkbox">
+                                <!-- Name -->
+                                School Download System
+                            </p>
+
+                            <p class="p-meta">
+                                <!-- Due date & % Completed -->
+                                <span>Due : 26/2/2012 - 80% Done</span>
+                            </p>
+
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <span class="sr-only">80% Complete (success)</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <p>
+                                <!-- Checkbox -->
+                                <input value="check1" type="checkbox">
+                                <!-- Name -->
+                                Question and Answers Script
+                            </p>
+
+                            <p class="p-meta">
+                                <!-- Due date & % Completed -->
+                                <span>Due : 26/2/2012 - 80% Done</span>
+                            </p>
+
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                    <span class="sr-only">20% Complete (success)</span>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- Project widget -->
+
+        </div>
+
+        <div class="col-md-4">
+
+            <!-- Browser widget -->
+            <div class="awidget">
+                <div class="awidget-head">
+                    <h3>Browsers</h3>
+                </div>
+                <div class="awidget-body no-table-bor">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th><center>#</center></th>
+                                <th>Browsers</th>
+                                <th>Visits</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/icons/chrome.png" alt="">
+                                </td>
+                                <td>Google Chrome</td>
+                                <td>3,005</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/icons/firefox.png" alt="">
+                                </td>
+                                <td>Mozilla Firefox</td>
+                                <td>2,505</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/icons/ie.png" alt="">
+                                </td>
+                                <td>Internet Explorer</td>
+                                <td>1,405</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/icons/opera.png" alt="">
+                                </td>
+                                <td>Opera</td>
+                                <td>4,005</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/icons/safari.png" alt="">
+                                </td>
+                                <td>Safari</td>
+                                <td>505</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Browser widget -->
+
+        </div>
+
+        <div class="col-md-4">
+            <!-- Server status widget -->
+            <div class="awidget">
+                <div class="awidget-head">
+                    <h3>Server Status</h3>
+                </div>
+                <div class="awidget-body no-table-bor">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Domain</td>
+                                <td>sitedomain.com</td>
+                            </tr>
+                            <tr>
+                                <td>IP Address</td>
+                                <td>192.425.2.4</td>
+                            </tr>
+                            <tr>
+                                <td>Disk Space</td>
+                                <td>600GB / 60000GB</td>
+                            </tr>
+                            <tr>
+                                <td>Bandwidth</td>
+                                <td>1000GB / 2000GB</td>
+                            </tr>
+                            <tr>
+                                <td>PHP Version</td>
+                                <td>5.1.1</td>
+                            </tr>
+                            <tr>
+                                <td>MySQL Databases</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Server status widget -->
+        </div>
+
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Documentation</dt>
-            <dd>
-                <ul>
-                    <li>
-                        Tutorials: <a href="www.asp.net/identity">www.asp.net/identity</a>
-                    </li>
-                    <li>
-                        StackOverflow: <a href="http://stackoverflow.com/questions/tagged/asp.net-identity">http://stackoverflow.com/questions/tagged/asp.net-identity</a>
-                    </li>
-                    <li>
-                        Twitter: #identity #aspnet
-                    </li>
-                    <li>
-                        <a href="http://curah.microsoft.com/55636/aspnet-identity">ASP.NET Identity on curah</a>
-                    </li>
-                    <li>
-                        Have bugs or suggestions for ASP.NET Identity <a href="http://aspnetidentity.codeplex.com/">http://aspnetidentity.codeplex.com/</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
+
 </div>

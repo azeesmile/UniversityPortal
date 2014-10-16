@@ -1,4 +1,4 @@
-﻿@model UniversityPortal.Models.EditUserViewModel
+﻿@model IdentitySample.Models.EditUserViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -19,41 +19,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Email)
+               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+               @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
-        <!-- Newly added-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FirstName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.MiddleName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MiddleName)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LastName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DateOfBirth)
-            </div>
-        </div>
-        <!-- // -->
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
             <span class=" col-md-10">

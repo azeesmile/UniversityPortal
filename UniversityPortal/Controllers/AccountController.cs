@@ -43,6 +43,8 @@ namespace UniversityPortal.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if(User.Identity.IsAuthenticated)
+                return RedirectToAction("index", "Home");
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -72,7 +74,10 @@ namespace UniversityPortal.Controllers
 
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                var result =
+                    await
+                        SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,
+                            shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -395,7 +400,7 @@ namespace UniversityPortal.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

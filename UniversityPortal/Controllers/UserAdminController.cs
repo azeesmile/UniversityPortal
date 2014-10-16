@@ -98,7 +98,7 @@ namespace UniversityPortal.Controllers
                     LastName = userViewModel.LastName,
                     DateOfBirth = userViewModel.DateOfBirth,
                     CreatedAt = dateCreated,
-                    UserName = userViewModel.Email,
+                    UserName = userViewModel.FirstName + " " + userViewModel.MiddleName,
                     Email = userViewModel.Email
                 };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
@@ -218,7 +218,7 @@ namespace UniversityPortal.Controllers
                     return HttpNotFound();
                 }
 
-                user.UserName = editUser.Email;
+                user.UserName = editUser.FirstName + " " + editUser.MiddleName;
                 user.Email = editUser.Email;
                 user.FirstName = editUser.FirstName;
                 user.MiddleName = editUser.MiddleName;
