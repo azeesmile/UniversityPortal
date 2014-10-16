@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityPortal", "UniversityPortal\UniversityPortal.csproj", "{F911AC78-D248-4656-B56F-64EC4B1FD1EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityPortal.Tests", "UniversityPortal.Tests\UniversityPortal.Tests.csproj", "{1A77B900-2F4B-4F79-B963-FC36751863D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F911AC78-D248-4656-B56F-64EC4B1FD1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F911AC78-D248-4656-B56F-64EC4B1FD1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F911AC78-D248-4656-B56F-64EC4B1FD1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F911AC78-D248-4656-B56F-64EC4B1FD1EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A77B900-2F4B-4F79-B963-FC36751863D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A77B900-2F4B-4F79-B963-FC36751863D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A77B900-2F4B-4F79-B963-FC36751863D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A77B900-2F4B-4F79-B963-FC36751863D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
