@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IdentitySample.Models.ApplicationUser>
+﻿@model IEnumerable<UniversityPortal.Models.ApplicationUser>
 
 @{
     ViewBag.Title = "Index";
@@ -15,6 +15,12 @@
             @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
+            <p></p>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
 
         </th>
     </tr>
@@ -24,6 +30,14 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.Display(" ")
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
