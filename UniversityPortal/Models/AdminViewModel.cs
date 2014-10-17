@@ -17,9 +17,13 @@ namespace UniversityPortal.Models
     {
         public string Id { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
+        [Required]
         [Display(Name = "Reg Number")]
         [RegularExpression(Constants.RegNumberPattern, ErrorMessage = "Registration Number is required and must be properly formatted.")]
+        public string UserName { get; set; }
+
+        [EmailAddress]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
