@@ -1,134 +1,86 @@
 ﻿@using Microsoft.Ajax.Utilities
-<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <!-- Title here -->
-    <title></title>
-    <!-- Description, Keywords and Author -->
-    <meta name="description" content="Your description">
-    <meta name="keywords" content="Your,Keywords">
-    <meta name="author" content="ResponsiveWebInc">
-
+    <style id="flot-default-styles">
+        .flot-tick-label {
+            font-size: smaller;
+            color: #545454;
+        }
+    </style>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Styles -->
-    <!-- Bootstrap CSS -->
-    <link href="~/Content/Admin/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Gritter -->
-    <link href="~/Content/Admin/css/jquery.gritter.css" rel="stylesheet">
-    <!-- Animate css -->
-    <link href="~/Content/Admin/css/animate.min.css" rel="stylesheet">
-    <!-- Bootstrap toggable -->
-    <link href="~/Content/Admin/css/bootstrap-switch.css" rel="stylesheet">
-    <!-- jQuery UI -->
-    <link href="~/Content/Admin/css/jquery-ui.css" rel="stylesheet">
-    <!-- prettyPhoto -->
-    <link href="~/Content/Admin/css/prettyPhoto.css" rel="stylesheet">
-    <!-- Font awesome CSS -->
-    <link href="~/Content/Admin/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="~/Content/Admin/css/style.css" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="#">
+    <!-- bootstrap -->
+    <link href="~/Content/Admin/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/Admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
+    <!-- libraries -->
+    <link href="~/Content/Admin/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet">
+    <link href="~/Content/Admin/css/lib/morris.css" type="text/css" rel="stylesheet">
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/icons.css">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="~/Content/Admin/css/compiled/chart-showcase.css" type="text/css" media="screen">
+
+    <!-- open sans font -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
-
 <body>
-
-
-    <!-- Logo & Navigation starts -->
-
-    <div class="header">
-        <div class="container">
-            <div class="row">
-                <!-- Logo and Navigation Partial view -->
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @Html.Partial("~/Views/Shared/PartialViews/_MainHeaderPartialView.cshtml")
-                }
-                else
-                {
-                    @Html.Partial("~/Views/Shared/PartialViews/_LoginHeaderPartialView.cshtml")
-                }
-                @*@RenderSection("LogoAndHeader", required: true)*@
-            </div>
-        </div>
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        @Html.Partial("~/Views/Shared/PartialViews/_HeaderPartialView.cshtml")
+        @if (Request.IsAuthenticated)
+        {
+        }
+    </header>
+    <!-- end navbar -->
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        @Html.Partial("~/Views/Shared/PartialViews/_AdminNavigationPartialView.cshtml")
+        @if (Request.IsAuthenticated && User.IsInRole("Student"))
+        {
+            @Html.Partial("~/Views/Shared/PartialViews/_StudentNavigationPartialView.cshtml")
+        }
+        else if (Request.IsAuthenticated && User.IsInRole("Teacher"))
+        {
+            @Html.Partial("~/Views/Shared/PartialViews/_TeacherNavigationPartialView.cshtml")
+        }
+        else if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            @Html.Partial("~/Views/Shared/PartialViews/_AdminNavigationPartialView.cshtml")
+        }
     </div>
-
-    <!-- Logo & Navigation ends -->
-    <!-- Page content -->
-
-    <div class="page-content blocky">
-        <div class="container">
-            <!-- Side menu Partial view -->
-            @if (User.IsInRole("Student"))
-            {
-                @Html.Partial("~/Views/Shared/PartialViews/_StudentMenuPartialView.cshtml")
-            }
-            else if (User.IsInRole("Admin"))
-            {
-                @Html.Partial("~/Views/Shared/PartialViews/_AdminMenuPartialView.cshtml")
-            }
-            else if (User.IsInRole("Teacher"))
-            {
-                @Html.Partial("~/Views/Shared/PartialViews/_TeacherMenuPartialView.cshtml")
-            }
-            @RenderSection("SideMenu", required: false)
-            <!-- Page title -->
+    <!-- end sidebar -->
+    <!-- main container -->
+    <div class="content">
+        <div id="pad-wrapper">
             @RenderBody()
-            <!-- Page title -->
-            <!-- Admin hero. Peity bar plugin used -->
         </div>
+
     </div>
-
-
-
-    <!-- Footer starts -->
-    <footer>
-        <div class="container">
-            <div class="copy text-center">
-                Copyright 2014 © - <a href="#">Lahore Garrison University</a>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer ends -->
-    <!-- Scroll to top -->
-    <span class="totop" style="display: block;"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
-    <!-- Javascript files -->
-    <!-- jQuery -->
-    <script src="~/Scripts/Admin/js/jquery.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="~/Scripts/Admin/js/bootstrap-min.js"></script>
-    <!-- jQuery UI -->
-    <script src="~/Scripts/Admin/js/jquery-ui-min.js"></script>
-    <!-- jQuery Peity -->
-    <script src="~/Scripts/Admin/js/peity.js"></script>
-    <!-- Calendar -->
-    <script src="~/Scripts/Admin/js/fullcalendar-min.js"></script>
-    <!-- jQuery Star rating -->
-    <script src="~/Scripts/Admin/js/jquery-rateit-min.js"></script>
-    <!-- prettyPhoto -->
-    <script src="~/Scripts/Admin/js/jquery-prettyPhoto.js"></script>
-    <!-- jQuery flot -->
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="~/Scripts/Admin/js/excanvas-min.js"></script><![endif]-->
-    <script src="~/Scripts/Admin/js/jquery-flot.js"></script>
-    <script src="~/Scripts/Admin/js/jquery-flot-pie.js"></script>
-    <script src="~/Scripts/Admin/js/jquery-flot-stack.js"></script>
-    <script src="~/Scripts/Admin/js/jquery-flot-resize.js"></script>
-    <!-- Gritter plugin -->
-    <script src="~/Scripts/Admin/js/jquery-gritter-min.js"></script>
-    <!-- CLEditor -->
-    <script src="~/Scripts/Admin/js/jquery-cleditor-min.js"></script>
-    <!-- Date and Time picker -->
-    <script src="~/Scripts/Admin/js/bootstrap-datetimepicker-min.js"></script>
-    <!-- jQuery Toggable -->
-    <script src="~/Scripts/Admin/js/bootstrap-switch-min.js"></script>
-    <!-- Respond JS for IE8 -->
-    <script src="~/Scripts/Admin/js/respond-min.js"></script>
-    <!-- HTML5 Support for IE -->
-    <script src="~/Scripts/Admin/js/html5shiv.js"></script>
-    <!-- Custom JS -->
-    <script src="~/Scripts/Admin/js/custom.js"></script>
+    <!-- end main container -->
+    <!-- scripts for this page -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="~/Scripts/Admin/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Admin/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <!-- knob -->
+    <script src="~/Scripts/Admin/js/jquery.knob.js"></script>
+    <!-- flot charts -->
+    <script src="~/Scripts/Admin/js/jquery.flot.js"></script>
+    <script src="~/Scripts/Admin/js/jquery.flot.stack.js"></script>
+    <script src="~/Scripts/Admin/js/jquery.flot.resize.js"></script>
+    <!-- morrisjs -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="~/Scripts/Admin/js/morris.min.js"></script>
+    <!-- call all plugins -->
+    <script src="~/Scripts/Admin/js/theme.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
