@@ -1,4 +1,5 @@
-﻿
+﻿@using UniversityPortal.WebUI.HtmlHelpers
+
     <ul id="dashboard-menu">
         <li class="active">
             <div class="pointer">
@@ -23,8 +24,9 @@
                 <span>Users</span>
                 <i class="icon-chevron-down"></i>
             </a>
+            @Html.ActiveList("RolesAdmin", "UsersAdmin", "News", "Events")
             <ul class="submenu">
-                <li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+                <li class="@Html.IfActive("RolesAdmin", "Index")">@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
                 <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
                 <li>@Html.ActionLink("Events", "Index", "Event")</li>
                 <li>@Html.ActionLink("News", "Index", "News")</li>
