@@ -34,11 +34,11 @@
 <body>
     <div class="login-wrapper">
         <a href="index-2.html">
-            <img class="logo" src="~/Content/Admin/img/logo-white.png" alt="logo" />
+            @*<img class="logo" src="~/Content/Admin/img/logo-white.png" alt="logo" />*@
         </a>
         <div class="box">
             <div class="content-wrap">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id="LoginForm" }))
                 {
                     @Html.AntiForgeryToken()
                     <h6>Log in</h6>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-3">
+                        <div class="col-md-offset-0 col-md-5">
                             <div class="checkbox-inline">
                                 @Html.CheckBoxFor(m => m.RememberMe)
                                 @Html.LabelFor(m => m.RememberMe)
@@ -64,9 +64,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+                        <div class="">
                             <input type="submit" value="Log in" class="btn-glow primary login" />
-                            <input type="reset" value="Reset" class="btn-glow primary reset" />
+                            <input type="reset" value="Reset" class="btn-glow primary reset" onclick="reset()" />
                         </div>
                     </div>
                 }
@@ -77,6 +77,11 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="~/Scripts/Admin/js/bootstrap.min.js"></script>
     <script src="~/Scripts/Admin/js/theme.js"></script>
+    <script>
+        function reset() {
+            document.getElementById("LoginForm").reset();
+        }
+    </script>
 </body>
 </html>
 
