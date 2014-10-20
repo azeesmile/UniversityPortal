@@ -28,7 +28,7 @@
     <!-- open sans font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -38,19 +38,37 @@
         </a>
         <div class="box">
             <div class="content-wrap">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
-                    <h6>Log in</h6>
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Registration Number", @required = "required" })
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
-                    <div class="remember">
-                        @Html.CheckBoxFor(m => m.RememberMe, new { @id = "remember-me" })
-                        <label for="remember-me">Remember me</label>
+                    <h6>Log in</h6>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Registration Number" })
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                    <input type="submit" value="Sign in" class="btn-glow primary login" />
-                    <input type="reset" value="Reset" class="btn-glow primary reset" />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-3">
+                            <div class="checkbox-inline">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn-glow primary login" />
+                            <input type="reset" value="Reset" class="btn-glow primary reset" />
+                        </div>
+                    </div>
                 }
             </div>
         </div>
@@ -61,3 +79,22 @@
     <script src="~/Scripts/Admin/js/theme.js"></script>
 </body>
 </html>
+
+@*
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    <h6>Log in</h6>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "alert" })
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Registration Number", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "" })
+                    <div class="remember">
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @id = "remember-me" })
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <input type="submit" value="Sign in" class="btn-glow primary login" />
+                    <input type="reset" value="Reset" class="btn-glow primary reset" />
+                }
+*@
