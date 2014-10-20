@@ -7,13 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace UniversityPortal.Models
 {
     using System;
     using System.Collections.Generic;
     
+    [Bind(Exclude = "Id")]
     public partial class Event
     {
         public Event()
@@ -21,21 +26,32 @@ namespace UniversityPortal.Models
             this.EmployeeDepartmentEvents = new HashSet<EmployeeDepartmentEvent>();
             this.Exams = new HashSet<Exam>();
         }
-    [Key]
-        public int Event_id { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        [DisplayName("Title")]
         public string title { get; set; }
+
+        [DisplayName("Description")]
         public string desc_ { get; set; }
+
+        [DisplayName("Start Date")]
+        [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> start_date_ { get; set; }
+
+        [DisplayName("End Date")]
+        [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> end_date { get; set; }
+
+        [DisplayName("For Whome")]
         public bool is_common { get; set; }
-        public bool is_holiday { get; set; }
-        public bool is_exam { get; set; }
+
+        [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> created_at { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
-        public bool is_due { get; set; }
-        public int Fk_Origin_id { get; set; }
-        public string origin_type { get; set; }
-    
+        public string Fk_Origin_id { get; set; }
+        
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<EmployeeDepartmentEvent> EmployeeDepartmentEvents { get; set; }
         public virtual ICollection<Exam> Exams { get; set; }
     }

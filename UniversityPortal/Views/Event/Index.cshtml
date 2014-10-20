@@ -1,0 +1,99 @@
+﻿@model IEnumerable<UniversityPortal.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.desc_)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_date_)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_common)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_holiday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_exam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_due)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fk_Origin_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.origin_type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.desc_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_date_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_common)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_holiday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_exam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_due)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fk_Origin_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.origin_type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

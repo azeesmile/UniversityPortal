@@ -72,6 +72,7 @@ namespace UniversityPortal.Models
         public virtual DbSet<FaGroupsSubject> FaGroupsSubjects { get; set; }
         public virtual DbSet<Gardian> Gardians { get; set; }
         public virtual DbSet<GradingLevel> GradingLevels { get; set; }
+        public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsComment> NewsComments { get; set; }
         public virtual DbSet<Observation> Observations { get; set; }

@@ -7,13 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace UniversityPortal.Models
 {
     using System;
     using System.Collections.Generic;
     
+    [Bind(Exclude = "Id")]
     public partial class EmployeeDepartment
     {
         public EmployeeDepartment()
@@ -22,10 +26,17 @@ namespace UniversityPortal.Models
             this.Employees = new HashSet<Employee>();
             this.EmployeeDepartmentEvents = new HashSet<EmployeeDepartmentEvent>();
         }
-    [Key]
-        public int Employee_Department_id { get; set; }
+        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        [DisplayName("Deptt. Code")]
         public string code { get; set; }
+
+        [DisplayName("Deptt. Name")]
         public string Name { get; set; }
+
+        [DisplayName("Deptt. Status")]
         public bool status_ { get; set; }
     
         public virtual ICollection<ArchivedEmployee> ArchivedEmployees { get; set; }

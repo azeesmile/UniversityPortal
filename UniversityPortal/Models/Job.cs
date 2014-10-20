@@ -7,27 +7,53 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
-namespace UniversityUniversityPortal.Models.Model
+namespace UniversityPortal.Models
 {
     using System;
     using System.Collections.Generic;
     
+    [Bind(Exclude = "Id")]
     public partial class Job
     {
-        [Key]
-        public int job_id { get; set; }
-        public string desc_ { get; set; }
+        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        [DisplayName("Title")]
         public string title { get; set; }
+        
+        [DisplayName("Description")]
+        public string desc_ { get; set; }
+        
+        [DisplayName("Job Reference")]
         public string job_ref { get; set; }
+        
+        [DisplayName("Department")]
         public string department { get; set; }
+        
+        [DisplayName("Location")]
         public string location { get; set; }
+        
+        [DisplayName("Minimum Salary")]
         public int min_salary { get; set; }
+        
+        [DisplayName("Maximum Salary")]
         public int max_salary { get; set; }
-        public string hours { get; set; }
+
+        [DisplayName("Job Type")]
+        public int hours { get; set; }
+
         public Nullable<System.DateTime> end_date { get; set; }
+        
+        [DisplayName("Application Form")]
         public string application_form { get; set; }
+        
+        [DisplayName("Email To Apply")]
         public string email_to_apply { get; set; }
     }
 }

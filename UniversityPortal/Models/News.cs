@@ -7,29 +7,40 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace UniversityPortal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [Bind(Exclude = "Id")]
     public partial class News
     {
         public News()
         {
             this.NewsComments = new HashSet<NewsComment>();
         }
-    [Key]
-        public int News_id { get; set; }
+        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+        
+        [DisplayName("Title")]
         public string title { get; set; }
+
+        [DisplayName("Description")]
         public string content { get; set; }
+
+        [DisplayName("Media Url")]
         public string mediaurl { get; set; }
+
         public Nullable<System.DateTime> created_at { get; set; }
-        public Nullable<System.DateTime> updated_at { get; set; }
-        public Nullable<int> FK_updated_Author_id { get; set; }
-        public int Fk_Author_id { get; set; }
-    
+        public string Fk_Author_id { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<NewsComment> NewsComments { get; set; }
     }
 }

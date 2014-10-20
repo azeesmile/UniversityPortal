@@ -35,15 +35,14 @@
 <body>
     <!-- navbar -->
     <header class="navbar navbar-inverse" role="banner">
-        @Html.Partial("~/Views/Shared/PartialViews/_HeaderPartialView.cshtml")
         @if (Request.IsAuthenticated)
         {
+            @Html.Partial("~/Views/Shared/PartialViews/_HeaderPartialView.cshtml")
         }
     </header>
     <!-- end navbar -->
     <!-- sidebar -->
     <div id="sidebar-nav">
-        @Html.Partial("~/Views/Shared/PartialViews/_AdminNavigationPartialView.cshtml")
         @if (Request.IsAuthenticated && User.IsInRole("Student"))
         {
             @Html.Partial("~/Views/Shared/PartialViews/_StudentNavigationPartialView.cshtml")
