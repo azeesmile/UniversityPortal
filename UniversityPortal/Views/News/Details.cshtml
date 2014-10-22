@@ -8,7 +8,7 @@
 
 <div>
     <h4>News</h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.title)
@@ -43,22 +43,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.updated_at)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.updated_at)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FK_updated_Author_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FK_updated_Author_id)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Fk_Author_id)
         </dt>
 
@@ -69,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

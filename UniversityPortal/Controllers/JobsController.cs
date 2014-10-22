@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using UniversityPortal.Models;
 
 namespace UniversityPortal.Controllers
 {
-    public class JobController : Controller
+    [Authorize]
+    public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: /Job/
+        // GET: Jobs
         public async Task<ActionResult> Index()
         {
             return View(await db.Job.ToListAsync());
         }
 
-        // GET: /Job/Details/5
+        // GET: Jobs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,13 +37,13 @@ namespace UniversityPortal.Controllers
             return View(job);
         }
 
-        // GET: /Job/Create
+        // GET: Jobs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Job/Create
+        // POST: Jobs/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Job job)
@@ -58,7 +58,7 @@ namespace UniversityPortal.Controllers
             return View(job);
         }
 
-        // GET: /Job/Edit/5
+        // GET: Jobs/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace UniversityPortal.Controllers
             return View(job);
         }
 
-        // POST: /Job/Edit/5
+        // POST: Jobs/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Job job)
@@ -87,7 +87,7 @@ namespace UniversityPortal.Controllers
             return View(job);
         }
 
-        // GET: /Job/Delete/5
+        // GET: Jobs/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -102,7 +102,7 @@ namespace UniversityPortal.Controllers
             return View(job);
         }
 
-        // POST: /Job/Delete/5
+        // POST: Jobs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
@@ -121,5 +121,35 @@ namespace UniversityPortal.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #region Frontend Methods
+
+        [AllowAnonymous]
+        [HttpPost]
+        public JsonResult GetJobJsonResult(int n)
+        {
+            var jobs = (from t in db.Job
+                                orderby t.title descending
+                                select t).Take(n);
+            return Json(jobs.ToList());
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public JsonResult GetJobDetailJsonResult(int? id)
+        {
+            if (id == null)
+            {
+                return Json(HttpStatusCode.BadRequest);
+            }
+            Job job = db.Job.Find(id);
+            if (job == null)
+            {
+                return Json(HttpNotFound().ToString());
+            }
+            return Json(job);
+        }
+
+        #endregion
     }
 }

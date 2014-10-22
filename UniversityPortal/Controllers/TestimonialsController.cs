@@ -3,112 +3,123 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using UniversityPortal.Models;
 
 namespace UniversityPortal.Controllers
 {
     [Authorize]
-    public class NewsController : Controller
+    public class TestimonialsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: News
+        // GET: Testimonials
         public async Task<ActionResult> Index()
         {
-            return View(await db.News.ToListAsync());
+            if (User.IsInRole("Student") || User.IsInRole("Teacher"))
+            {
+                string id = User.Identity.GetUserId();
+                var testimonials = from t in db.Testimonial
+                                   where t.UserName == id
+                                   select t;
+                return View(testimonials.ToList());
+            }
+            return View(await db.Testimonial.ToListAsync());
         }
-
-        // GET: News/Details/5
+        
+        // GET: Testimonials/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = await db.News.FindAsync(id);
-            if (news == null)
+            Testimonial testimonial = await db.Testimonial.FindAsync(id);
+            if (testimonial == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(testimonial);
         }
-
-        // GET: News/Create
+        
+        // GET: Testimonials/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: News/Create
+        // POST: Testimonials/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(News news)
+        public async Task<ActionResult> Create(Testimonial testimonial)
         {
             if (ModelState.IsValid)
             {
-                db.News.Add(news);
+                db.Testimonial.Add(testimonial);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(news);
+            return View(testimonial);
         }
 
-        // GET: News/Edit/5
+        // GET: Testimonials/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = await db.News.FindAsync(id);
-            if (news == null)
+            Testimonial testimonial = await db.Testimonial.FindAsync(id);
+            if (testimonial == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(testimonial);
         }
 
-        // POST: News/Edit/5
+        // POST: Testimonials/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(News news)
+        public async Task<ActionResult> Edit(Testimonial testimonial)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                db.Entry(testimonial).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(news);
+            return View(testimonial);
         }
 
-        // GET: News/Delete/5
+        // GET: Testimonials/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = await db.News.FindAsync(id);
-            if (news == null)
+            Testimonial testimonial = await db.Testimonial.FindAsync(id);
+            if (testimonial == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(testimonial);
         }
 
-        // POST: News/Delete/5
+        // POST: Testimonials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            News news = await db.News.FindAsync(id);
-            db.News.Remove(news);
+            Testimonial testimonial = await db.Testimonial.FindAsync(id);
+            db.Testimonial.Remove(testimonial);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -126,31 +137,32 @@ namespace UniversityPortal.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public JsonResult GetNewsJsonResult(int n)
+        public JsonResult GetTestinomial(int n)
         {
-            var news = (from t in db.News
-                                orderby t.created_at descending
+            var testimonials = (from t in db.Testimonial
+                                orderby t.CreatedDate descending
                                 select t).Take(n);
-            return Json(news.ToList());
+            return Json(testimonials.ToList());
         }
 
         [AllowAnonymous]
         [HttpPost]
         // GET: Testimonials/Details/5
-        public JsonResult GetNewsDetailjsonResult(int? id)
+        public JsonResult GetTestinomialDetailjsonResult(int? id)
         {
             if (id == null)
             {
                 return Json(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Testimonial testimonial = db.Testimonial.Find(id);
+            if (testimonial == null)
             {
                 return Json(HttpNotFound().ToString());
             }
-            return Json(news);
+            return Json(testimonial);
         }
 
         #endregion
+
     }
 }

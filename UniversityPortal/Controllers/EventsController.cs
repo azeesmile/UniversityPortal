@@ -11,17 +11,17 @@ using UniversityPortal.Models;
 
 namespace UniversityPortal.Controllers
 {
-    public class EventController : Controller
+    public class EventsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: /Event/
+        // GET: Events
         public async Task<ActionResult> Index()
         {
             return View(await db.Events.ToListAsync());
         }
 
-        // GET: /Event/Details/5
+        // GET: Events/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,13 +36,13 @@ namespace UniversityPortal.Controllers
             return View(@event);
         }
 
-        // GET: /Event/Create
+        // GET: Events/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Event/Create
+        // POST: Events/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Event @event)
@@ -57,7 +57,7 @@ namespace UniversityPortal.Controllers
             return View(@event);
         }
 
-        // GET: /Event/Edit/5
+        // GET: Events/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,7 +72,7 @@ namespace UniversityPortal.Controllers
             return View(@event);
         }
 
-        // POST: /Event/Edit/5
+        // POST: Events/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Event @event)
@@ -86,7 +86,7 @@ namespace UniversityPortal.Controllers
             return View(@event);
         }
 
-        // GET: /Event/Delete/5
+        // GET: Events/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -101,7 +101,7 @@ namespace UniversityPortal.Controllers
             return View(@event);
         }
 
-        // POST: /Event/Delete/5
+        // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
@@ -120,5 +120,36 @@ namespace UniversityPortal.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #region Frontend Json Methods
+
+        [AllowAnonymous]
+        [HttpPost]
+        public JsonResult GetEventsJsonResult(int n)
+        {
+            var events = (from t in db.Events
+                                orderby t.end_date descending
+                                select t).Take(n);
+            return Json(events.ToList());
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        // GET: Testimonials/Details/5
+        public JsonResult GetEventDetailJsonResult(int? id)
+        {
+            if (id == null)
+            {
+                return Json(HttpStatusCode.BadRequest);
+            }
+            Event events = db.Events.Find(id);
+            if (events == null)
+            {
+                return Json(HttpNotFound().ToString());
+            }
+            return Json(events);
+        }
+
+        #endregion
     }
 }

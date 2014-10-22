@@ -87,6 +87,7 @@ namespace UniversityPortal.Models
         public virtual DbSet<StudentSubject> StudentSubjects { get; set; }
         public virtual DbSet<SubjectLeave> SubjectLeaves { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<Testimonial> Testimonial { get; set; }
         public virtual DbSet<Timetable> Timetables { get; set; }
         public virtual DbSet<TimetableEntry> TimetableEntries { get; set; }
         public virtual DbSet<Week_Day> Week_Day { get; set; }
