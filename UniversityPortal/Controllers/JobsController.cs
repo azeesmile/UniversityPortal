@@ -11,7 +11,7 @@ using UniversityPortal.Models;
 
 namespace UniversityPortal.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -11,6 +11,7 @@ using UniversityPortal.Models;
 
 namespace UniversityPortal.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EventsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

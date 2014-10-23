@@ -118,13 +118,17 @@ namespace UniversityPortal.Models
             const string username = "Administrator";
             const string useremail = "Administrator@gmail.com";
             const string password = "Admin@123456";
-            const string roleName = "Admin";
+            string[] roles =new []{ "Admin","Student","Teacher"};
 
             //Create Role Admin if it does not exist
-            var role = roleManager.FindByName(roleName);
-            if (role == null) {
-                role = new IdentityRole(roleName);
-                var roleresult = roleManager.Create(role);
+            var role = roleManager.FindByName(roles[0]);
+            if (role == null)
+            {
+                foreach (var r in roles)
+                {
+                    role = new IdentityRole(r);
+                    var roleresult = roleManager.Create(role); 
+                }
             }
 
             var user = userManager.FindByName(name);

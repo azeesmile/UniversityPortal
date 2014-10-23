@@ -1,4 +1,62 @@
-﻿<ul id="dashboard-menu">
+﻿@using UniversityPortal.WebUI.HtmlHelpers
+<ul id="dashboard-menu">
+    <li class="@Html.IfActive("Student")">
+        <a href="@Url.Action("Profile","Students")">
+            <i class="icon-home"></i>
+            <span>Profile</span>
+        </a>
+    </li>
+    <li class ="@Html.IfActive("")">
+        <a href="@Url.Action("Index","UsersAdmin")">
+            <i class="icon-user"></i>
+            <span>Time Table</span>
+        </a>
+    </li>
+    <li class="@Html.IfActive("")">
+        <a href="@Url.Action()">
+            <i class="icon-book"></i>
+            <span>Courses</span>
+        </a>
+    </li>
+    <li class="@Html.IfActive("")">
+        <a href="@Url.Action()">
+            <i class="ui-icon-notice"></i>
+            <span>Notice Board</span>
+        </a>
+    </li>
+    <li class="@Html.IfActive("")">
+        <a href="@Url.Action()">
+            <i class="icon-briefcase"></i>
+            <span>Lectures</span>
+        </a>
+    </li>
+    <li class="@Html.IfActive("")">
+        <a href="@Url.Action()">
+            <i class="icon-calendar"></i>
+            <span>Academic Calendar</span>
+        </a>
+    </li>
+    <li class="@Html.IfActive("Testimonials")">
+        <a href="@Url.Action("Index","Testimonials")">
+            <i class="icon-pencil"></i>
+            <span>Testinomial</span>
+        </a>
+    </li>
+    <li class="@Html.IfActive("")">
+        <a href="@Url.Action()">
+            <i class="icon-download"></i>
+            <span>Downloads</span>
+        </a>
+    </li>
+    <li class="@Html.IfActive("")">
+        <a href="@Url.Action()">
+            <i class="icon-upload"></i>
+            <span>Upload</span>
+        </a>
+    </li>
+</ul>
+
+@*<ul id="dashboard-menu">
     <li class="active">
         <div class="pointer">
             <div class="arrow"></div>
@@ -91,4 +149,4 @@
             <li><a href="signup.html">Sign up</a></li>
         </ul>
     </li>
-</ul>
+</ul>*@

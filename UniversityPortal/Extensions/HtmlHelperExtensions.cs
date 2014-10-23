@@ -9,31 +9,38 @@ namespace UniversityPortal.WebUI.HtmlHelpers
 {
     public static class HtmlHelperExtensions
     {
+        public static string IfActive(this HtmlHelper helper, params string[] values)
+        {
+            string currentController = helper.ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();
+
+            if (values.Any(controller => currentController == controller))
+            {
+                return "active";
+            }
+
+            return string.Empty;
+        }
+
         public static string IfActive(this HtmlHelper helper, string controller, string action)
         {
-            string classValue = "";
-
             string currentController = helper.ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();
             string currentAction = helper.ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
 
             if (currentController == controller && currentAction == action)
             {
-                classValue = "active";
+                return "active";
             }
 
-            return classValue;
+            return string.Empty;
         }
         public static string ActiveList(this HtmlHelper helper, params string[] values)
         {
             string currentController = helper.ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();
             //string currentAction = helper.ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
 
-            foreach (var controller in values)
+            if (values.Any(controller => currentController == controller))
             {
-                if (currentController == controller)
-                {
-                    return "pointer";
-                }
+                return "pointer";
             }
 
             return string.Empty;
