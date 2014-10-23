@@ -408,7 +408,6 @@
     <Content Include="Areas\FrontEnd\Views\Addmissions\WhyLGU.cshtml" />
     <Content Include="Areas\FrontEnd\Views\Contact\Index.cshtml" />
     <Content Include="Areas\FrontEnd\Views\Home\FAQ.cshtml" />
-    <Content Include="Areas\FrontEnd\Views\Home\Index.cshtml" />
     <Content Include="Areas\FrontEnd\Views\NewsAndEvents\Index.cshtml" />
     <Content Include="Areas\FrontEnd\Views\Services\Cafeteria.cshtml" />
     <Content Include="Areas\FrontEnd\Views\Services\Index.cshtml" />
@@ -442,6 +441,7 @@
     <Content Include="Content\Admin\font\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Admin\font\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Admin\font\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Areas\FrontEnd\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\FrontEnd\admin\bootstrap-min.js" />
     <Content Include="Scripts\FrontEnd\admin\bootstrap.js" />
