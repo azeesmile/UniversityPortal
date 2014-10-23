@@ -15,11 +15,22 @@ namespace UniversityPortal.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [ScaffoldColumn(false)]
         public int Id { get; set; }
+
+        [ScaffoldColumn(false)]
         public string UserName { get; set; }
+
         public string Review { get; set; }
+
+        [ScaffoldColumn(false)]
         public string Name { get; set; }
+
+        [ScaffoldColumn(false)]
         public string Department { get; set; }
+
+        [ScaffoldColumn(false)]
         public DateTime? CreatedDate { get; set; }
+
+        [ScaffoldColumn(false)]
         public int IsApproved { get; set; }
     }
 }

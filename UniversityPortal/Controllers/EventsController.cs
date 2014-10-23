@@ -11,7 +11,6 @@ using UniversityPortal.Models;
 
 namespace UniversityPortal.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class EventsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -122,21 +121,27 @@ namespace UniversityPortal.Controllers
             base.Dispose(disposing);
         }
 
-        #region Frontend Json Methods
+        #region Frontend Methods
 
         [AllowAnonymous]
         [HttpPost]
-        public JsonResult GetEventsJsonResult(int n)
+        public JsonResult GetEventJsonResult(int n)
         {
-            var events = (from t in db.Events
-                                orderby t.end_date descending
-                                select t).Take(n);
-            return Json(events.ToList());
+            List<EventFrontEndViewModel> events = (
+                (db.Events.OrderByDescending(t => t.start_date_).Select(t => new EventFrontEndViewModel
+                {
+                    Title = t.title,
+                    Description = t.desc_,
+                    StartDate = t.start_date_,
+                    Duration = t.Duration,
+                    Location = t.Location
+                })).Take(n)
+            ).ToList();
+            return Json(events);
         }
 
         [AllowAnonymous]
         [HttpPost]
-        // GET: Testimonials/Details/5
         public JsonResult GetEventDetailJsonResult(int? id)
         {
             if (id == null)

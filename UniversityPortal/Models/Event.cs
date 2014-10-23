@@ -21,11 +21,6 @@ namespace UniversityPortal.Models
     [Bind(Exclude = "Id")]
     public partial class Event
     {
-        public Event()
-        {
-            this.EmployeeDepartmentEvents = new HashSet<EmployeeDepartmentEvent>();
-            this.Exams = new HashSet<Exam>();
-        }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -36,23 +31,22 @@ namespace UniversityPortal.Models
         [DisplayName("Description")]
         public string desc_ { get; set; }
 
+        [DisplayName("For Whome")]
+        public string forWhome { get; set; }
+
+        [DisplayName("Location")]
+        public string Location { get; set; }
+
+        [DisplayName("Duration")]
+        public int Duration { get; set; }
+
         [DisplayName("Start Date")]
         [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> start_date_ { get; set; }
 
-        [DisplayName("End Date")]
-        [DataType(DataType.DateTime)]
-        public Nullable<System.DateTime> end_date { get; set; }
-
-        [DisplayName("For Whome")]
-        public bool is_common { get; set; }
-
         [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> created_at { get; set; }
+
         public string Fk_Origin_id { get; set; }
-        
-        public virtual ApplicationUser User { get; set; }
-        public virtual ICollection<EmployeeDepartmentEvent> EmployeeDepartmentEvents { get; set; }
-        public virtual ICollection<Exam> Exams { get; set; }
     }
 }

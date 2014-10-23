@@ -131,6 +131,8 @@ namespace UniversityPortal.Models
                 }
             }
 
+            role = new IdentityRole(roles[0]);
+
             var user = userManager.FindByName(name);
             if (user == null) {
                 user = new ApplicationUser { UserName = name, Email = useremail, FirstName = username };

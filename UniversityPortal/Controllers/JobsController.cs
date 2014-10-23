@@ -128,10 +128,32 @@ namespace UniversityPortal.Controllers
         [HttpPost]
         public JsonResult GetJobJsonResult(int n)
         {
-            var jobs = (from t in db.Job
-                                orderby t.title descending
-                                select t).Take(n);
-            return Json(jobs.ToList());
+            List<JobFrontEndViewModel> jobs = (
+                (db.Job.OrderByDescending(j => j.created_date).Select(j => new JobFrontEndViewModel
+                {
+                    Title = j.title,
+                    Description = j.desc_,
+                    Department = j.department,
+                    Hours = j.hours,
+                    JobReference = j.job_ref,
+                    Location = j.location,
+                    MaxSalary = j.max_salary,
+                    MinSalary = j.min_salary
+                })).Take(n)).ToList();
+                //from t in db.Job
+                //                orderby t.title descending
+                //                select new JobFrontEndViewModel
+                //                {
+                //                    Title = t.title,
+                //                    Description = t.desc_,
+                //                    Department = t.department,
+                //                    Hours = t.hours,
+                //                    JobReference = t.job_ref,
+                //                    Location = t.location,
+                //                    MaxSalary = t.max_salary,
+                //                    MinSalary = t.min_salary
+                //                }).Take(n)).ToList();
+            return Json(jobs);
         }
 
         [AllowAnonymous]

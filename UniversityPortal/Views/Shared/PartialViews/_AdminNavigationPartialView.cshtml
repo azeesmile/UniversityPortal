@@ -1,8 +1,8 @@
 ﻿@using UniversityPortal.WebUI.HtmlHelpers
 
 <ul id="dashboard-menu">
-    <li class="@Html.IfActive("RolesAdmin", "UsersAdmin", "News", "Events")">
-        <div class="@Html.ActiveList("RolesAdmin", "UsersAdmin", "News", "Events")">
+    <li class="@Html.IfActive("Home", "Index")">
+        <div class="@Html.ActiveList("RolesAdmin")">
             <div class="arrow"></div>
             <div class="arrow_border"></div>
         </div>

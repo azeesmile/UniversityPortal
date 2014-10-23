@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using UniversityPortal.Models;
 
 namespace UniversityPortal.Controllers
 {
-    [Authorize]
     public class TestimonialsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,17 +18,9 @@ namespace UniversityPortal.Controllers
         // GET: Testimonials
         public async Task<ActionResult> Index()
         {
-            if (User.IsInRole("Student") || User.IsInRole("Teacher"))
-            {
-                string id = User.Identity.GetUserId();
-                var testimonials = from t in db.Testimonial
-                                   where t.UserName == id
-                                   select t;
-                return View(testimonials.ToList());
-            }
             return View(await db.Testimonial.ToListAsync());
         }
-        
+
         // GET: Testimonials/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -47,7 +35,7 @@ namespace UniversityPortal.Controllers
             }
             return View(testimonial);
         }
-        
+
         // GET: Testimonials/Create
         public ActionResult Create()
         {
@@ -132,37 +120,5 @@ namespace UniversityPortal.Controllers
             }
             base.Dispose(disposing);
         }
-
-        #region Frontend Json Methods
-
-        [AllowAnonymous]
-        [HttpPost]
-        public JsonResult GetTestinomial(int n)
-        {
-            var testimonials = (from t in db.Testimonial
-                                orderby t.CreatedDate descending
-                                select t).Take(n);
-            return Json(testimonials.ToList());
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        // GET: Testimonials/Details/5
-        public JsonResult GetTestinomialDetailjsonResult(int? id)
-        {
-            if (id == null)
-            {
-                return Json(HttpStatusCode.BadRequest);
-            }
-            Testimonial testimonial = db.Testimonial.Find(id);
-            if (testimonial == null)
-            {
-                return Json(HttpNotFound().ToString());
-            }
-            return Json(testimonial);
-        }
-
-        #endregion
-
     }
 }

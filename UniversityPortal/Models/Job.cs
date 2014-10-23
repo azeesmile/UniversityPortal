@@ -48,7 +48,7 @@ namespace UniversityPortal.Models
         [DisplayName("Job Type")]
         public int hours { get; set; }
 
-        public Nullable<System.DateTime> end_date { get; set; }
+        public Nullable<System.DateTime> created_date { get; set; }
         
         [DisplayName("Application Form")]
         public string application_form { get; set; }
