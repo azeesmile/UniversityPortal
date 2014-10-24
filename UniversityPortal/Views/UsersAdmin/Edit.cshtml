@@ -15,14 +15,45 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+        
+        <div class="form-box">
+            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-               @Html.ValidationMessageFor(model => model.Email)
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control  inline-input", @readonly = "readonly" })
             </div>
         </div>
+
+        <div class="form-box">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control  inline-input" })
+            </div>
+        </div>
+        <div class="form-box">
+            @Html.LabelFor(m => m.MiddleName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control  inline-input" })
+            </div>
+        </div>
+        <div class="form-box">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control inline-input" })
+            </div>
+        </div>
+        <div class="form-box">
+            @Html.LabelFor(m => m.DateOfBirth, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control  input-datepicker" })
+            </div>
+        </div>
+        <div class="form-box">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control  inline-input" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
             <span class=" col-md-10">
@@ -44,6 +75,7 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Change Password", "ForgotPassword","Account")
 </div>
 
 @section Scripts {

@@ -510,11 +510,13 @@
     <Compile Include="Areas\FrontEnd\FrontEndAreaRegistration.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
-    <Compile Include="Controllers\TestimonialsController.cs" />
+    <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -638,16 +640,26 @@
     <Content Include="Views\Shared\PartialViews\_TeacherNavigationPartialView.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Testimonial\Create.cshtml" />
+    <Content Include="Views\Testimonial\Delete.cshtml" />
+    <Content Include="Views\Testimonial\Details.cshtml" />
+    <Content Include="Views\Testimonial\Edit.cshtml" />
+    <Content Include="Views\Testimonial\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Jobs\Create.cshtml" />
     <Content Include="Views\Jobs\Delete.cshtml" />
     <Content Include="Views\Jobs\Details.cshtml" />
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
-    <Content Include="Views\Testimonials\Create.cshtml" />
-    <Content Include="Views\Testimonials\Delete.cshtml" />
-    <Content Include="Views\Testimonials\Details.cshtml" />
-    <Content Include="Views\Testimonials\Edit.cshtml" />
-    <Content Include="Views\Testimonials\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

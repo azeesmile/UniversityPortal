@@ -16,6 +16,29 @@
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
+        <dt>
+            @Html.Raw("Name")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+            @Html.Raw(" ")
+            @Html.DisplayNameFor(model => model.MiddleName)
+            @Html.Raw(" ")
+            @Html.DisplayNameFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
     </dl>
 </div>
 <h4>List of roles for this user</h4>
