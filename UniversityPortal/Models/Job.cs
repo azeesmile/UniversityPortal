@@ -16,8 +16,8 @@ namespace UniversityPortal.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    [Bind(Exclude = "Id")]
+
+    [Bind(Exclude = "Id,CreatedAt")]
     public partial class Job
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,35 +25,36 @@ namespace UniversityPortal.Models
         public int Id { get; set; }
 
         [DisplayName("Title")]
-        public string title { get; set; }
+        public string Title { get; set; }
         
         [DisplayName("Description")]
-        public string desc_ { get; set; }
+        public string Description { get; set; }
         
         [DisplayName("Job Reference")]
-        public string job_ref { get; set; }
+        public string JobReference { get; set; }
         
         [DisplayName("Department")]
-        public string department { get; set; }
+        public string Department { get; set; }
         
         [DisplayName("Location")]
-        public string location { get; set; }
+        public string Location { get; set; }
         
         [DisplayName("Minimum Salary")]
-        public int min_salary { get; set; }
+        public int MinimumSalary { get; set; }
         
         [DisplayName("Maximum Salary")]
-        public int max_salary { get; set; }
+        public int MaximumSalary { get; set; }
 
         [DisplayName("Job Type")]
         public int hours { get; set; }
 
-        public Nullable<System.DateTime> created_date { get; set; }
+        [DisplayName("CreatedAt")]
+        public Nullable<System.DateTime> CreatedAt { get; set; }
         
         [DisplayName("Application Form")]
-        public string application_form { get; set; }
+        public string ApplicationForm { get; set; }
         
         [DisplayName("Email To Apply")]
-        public string email_to_apply { get; set; }
+        public string EmailToApply { get; set; }
     }
 }

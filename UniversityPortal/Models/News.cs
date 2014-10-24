@@ -17,30 +17,26 @@ namespace UniversityPortal.Models
     using System;
     using System.Collections.Generic;
 
-    [Bind(Exclude = "Id")]
+    [Bind(Exclude = "Id,CreatedAt")]
     public partial class News
     {
-        public News()
-        {
-            this.NewsComments = new HashSet<NewsComment>();
-        }
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [ScaffoldColumn(false)]
         public int Id { get; set; }
         
         [DisplayName("Title")]
-        public string title { get; set; }
+        public string Title { get; set; }
 
         [DisplayName("Description")]
-        public string content { get; set; }
+        public string Description { get; set; }
 
         [DisplayName("Media Url")]
-        public string mediaurl { get; set; }
+        public string MediaUrl { get; set; }
 
-        public Nullable<System.DateTime> created_at { get; set; }
-        public string Fk_Author_id { get; set; }
+        [DisplayName("Created At")]
+        public Nullable<System.DateTime> CreatedAt { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
-        public virtual ICollection<NewsComment> NewsComments { get; set; }
+        [DisplayName("UserId")]
+        public string UserName { get; set; }
     }
 }
