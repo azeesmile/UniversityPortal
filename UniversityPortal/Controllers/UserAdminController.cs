@@ -89,6 +89,7 @@ namespace UniversityPortal.Controllers
         public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
         {
             var dateCreated = DateTime.Now;
+            Student student = new Student();
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
@@ -98,7 +99,7 @@ namespace UniversityPortal.Controllers
                     LastName = userViewModel.LastName,
                     DateOfBirth = userViewModel.DateOfBirth,
                     CreatedAt = dateCreated,
-                    UserName = userViewModel.UserName,
+                    UserName = CreateStudentRegistrationNo(student, ApplicationDbContext db),
                     Email = userViewModel.Email
                 };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
@@ -131,6 +132,23 @@ namespace UniversityPortal.Controllers
             return View();
         }
 
+        private string CreateStudentRegistrationNo(Student student, ApplicationDbContext db)
+        {
+            int id = db.Students.Count(s => (s.DepartmentId == student.DepartmentId)
+                    && (s.Date.Year == student.Date.Year)) + 1;
+            Department aDepartment = db.Departments.Where(d => d.DepartmentId == student.DepartmentId).FirstOrDefault();
+            string registrationId = aDepartment.Code + "-" + student.Date.Year + "-";
+
+            string addZero = "";
+            int len = 3 - id.ToString().Length;
+            for (int i = 0; i < len; i++)
+            {
+                addZero = "0" + addZero;
+            }
+
+            return registrationId + addZero + id;
+        }
+
         private async Task InsertEmployee(RegisterViewModel userViewModel)
         {
 
@@ -138,7 +156,7 @@ namespace UniversityPortal.Controllers
             var userrole = await UserManager.GetRolesAsync(userdata.Id);
             if(userrole[0].ToString() == "Student")
             {
-                var student = new Student{ Fk_User_Id = userdata.Id };
+                var student = new Student{ StudentId = userdata.Id };
                 try
                 {
                     using (var db = new ApplicationDbContext())
@@ -154,12 +172,12 @@ namespace UniversityPortal.Controllers
             }
             else if (userrole[0].ToString() == "Teacher" || userrole[0].ToString() == "Admin")
             {
-                var employee = new Employee{ Fk_User_Id = userdata.Id };
+                var teacher = new Teacher{ TeacherId = userdata.Id };
                 try
                 {
                     using (var db = new ApplicationDbContext())
                     {
-                        db.Employees.Add(employee);
+                        db.Employees.Add(teacher);
                         db.SaveChanges();
                     }
                 }

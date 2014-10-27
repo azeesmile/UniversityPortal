@@ -1,5 +1,71 @@
 ﻿@using UniversityPortal.WebUI.HtmlHelpers
-<ul id="dashboard-menu">
+
+<div class="subnavbar-inner">
+    <div class="container">
+        <ul class="mainnav">
+            <li class="active">
+                <a href="index.html">
+                    <i class="icon-dashboard">
+                    </i>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="reports.html">
+                    <i class="icon-list-alt"></i>
+                    <span>
+                        Campus News
+                    </span>
+                </a>
+            </li>
+            <li class="subnavbar-open-right">
+                <a href="guidely.html">
+                    <i class="icon-facetime-video"></i>
+                    <span>
+                        Time Table
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="charts.html">
+                    <i class="icon-bar-chart"></i>
+                    <span>
+                        Academics
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="shortcodes.html">
+                    <i class="icon-code"></i>
+                    <span>
+                        Testimonials
+                    </span>
+                </a>
+            </li>
+            <li class="dropdown subnavbar-open-right">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-long-arrow-down"></i>
+                    <span>
+                        Utilities
+                    </span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="icons.html">Download</a></li>
+                    <li><a href="faq.html">Upload</a></li>
+                    <li class="subnavbar-open-right"><a href="pricing.html">FAQ</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /container -->
+</div>
+
+
+
+@*<ul id="dashboard-menu">
     <li class="@Html.IfActive("Teachers")">
         <a href="@Url.Action("Profile", "Teachers")">
             <i class="icon-home"></i>
@@ -54,4 +120,4 @@
             <span>Upload</span>
         </a>
     </li>
-</ul>
+</ul>*@

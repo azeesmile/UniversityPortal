@@ -7,99 +7,232 @@
 }
 
 <!DOCTYPE html>
-<html class="login-bg">
+
+
+<html lang="en">
 <head>
-    <title>@ViewBag.Title</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Lahore Garrison University</title>
 
-    <!-- bootstrap -->
-    <link href="~/Content/Admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/Admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
-    <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/layout.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/elements.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/icons.css" />
-    <!-- libraries -->
-    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/lib/font-awesome.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <!-- this page specific styles -->
-    <link rel="stylesheet" href="~/Content/Admin/css/compiled/signin.css" type="text/css" media="screen" />
-    <!-- open sans font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
-    <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link href="~/Content/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/admin/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/admin/css/font-awesome.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+
+    <link href="~/Content/admin/css/style.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/admin/css/pages/signin.css" rel="stylesheet" type="text/css">
+
 </head>
+
 <body>
-    <div class="login-wrapper">
-        <a href="index-2.html">
-            @*<img class="logo" src="~/Content/Admin/img/logo-white.png" alt="logo" />*@
-        </a>
-        <div class="box">
-            <div class="content-wrap">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id="LoginForm" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h6>Log in</h6>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Registration Number" })
-                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-0 col-md-5">
-                            <div class="checkbox-inline">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="">
-                            <input type="submit" value="Log in" class="btn-glow primary login" />
-                            <input type="reset" value="Reset" class="btn-glow primary reset" onclick="reset()" />
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    <!-- scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="~/Scripts/Admin/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/Admin/js/theme.js"></script>
-    <script>
-        function reset() {
-            document.getElementById("LoginForm").reset();
-        }
-    </script>
+
+    <div class="navbar navbar-fixed-top">
+
+        <div class="navbar-inner">
+
+            <div class="container">
+
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <a class="brand" href="index.html">Lahore Garrison University</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav pull-right">
+
+                        <li class="">
+                            <a href="signup.html" class="">
+                                Don't have an account?
+                            </a>
+
+                        </li>
+
+                        <li class="">
+                            <a href="#" class="">
+                                <i class="icon-chevron-left"></i>
+                                Back to Homepage
+                            </a>
+
+                        </li>
+                    </ul>
+
+                </div><!--/.nav-collapse -->
+
+            </div> <!-- /container -->
+
+        </div> <!-- /navbar-inner -->
+
+    </div> <!-- /navbar -->
+
+
+
+    <div class="account-container">
+
+        <div class="content clearfix">
+
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <h1>Member Login</h1>
+
+                <div class="login-fields">
+
+                    <p>Please provide your details</p>
+
+                    <div class="field">
+                        @*<label for="username">Username</label>
+                            <input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field">*@
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "login username-field", @placeholder = "Registration Number" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div> <!-- /field -->
+
+                    <div class="field">
+                        @*<label for="password">Password:</label>
+                            <input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field">*@
+                        @Html.PasswordFor(m => m.Password, new { @class = "login password-field", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div> <!-- /password -->
+
+                </div>
+                <!-- /login-fields -->
+
+                <div class="login-actions">
+
+                    <span class="login-checkbox">
+                        <input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4">
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "field login-checkbox" })
+                        <label class="choice" for="Field">Keep me signed in</label>
+                    </span>
+                    @*<button class="button btn btn-success btn-large">Sign In</button>*@
+                    <input type="submit" value="Log in" class="button btn btn-success btn-large" />
+                    <input type="reset" value="Reset" class="button btn btn-success btn-large" />
+                </div>
+                <!-- .actions -->
+
+
+
+            }
+
+        </div> <!-- /content -->
+
+    </div> <!-- /account-container -->
+    <!-- /login-extra -->
+
+
+    <script src="~/Scripts/admin/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Scripts/admin/js/bootstrap.js"></script>
+
+    <script src="~/Scripts/admin/js/signin.js"></script>
+
+
+
+
 </body>
 </html>
 
+
+
 @*
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    <h6>Log in</h6>
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "alert" })
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Registration Number", @required = "required" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "" })
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "" })
-                    <div class="remember">
-                        @Html.CheckBoxFor(m => m.RememberMe, new { @id = "remember-me" })
-                        <label for="remember-me">Remember me</label>
-                    </div>
-                    <input type="submit" value="Sign in" class="btn-glow primary login" />
-                    <input type="reset" value="Reset" class="btn-glow primary reset" />
-                }
+    <html class="login-bg">
+    <head>
+        <title>@ViewBag.Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- bootstrap -->
+        <link href="~/Content/Admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/Admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+        <!-- global styles -->
+        <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/layout.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/elements.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/compiled/icons.css" />
+        <!-- libraries -->
+        <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/lib/font-awesome.css" />
+
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="~/Content/Admin/css/compiled/signin.css" type="text/css" media="screen" />
+        <!-- open sans font -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="login-wrapper">
+            <a href="index-2.html">
+                @*<img class="logo" src="~/Content/Admin/img/logo-white.png" alt="logo" />
+            </a>
+            <div class="box">
+                <div class="content-wrap">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id="LoginForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h6>Log in</h6>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Registration Number" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-0 col-md-5">
+                                <div class="checkbox-inline">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <input type="submit" value="Log in" class="btn-glow primary login" />
+                                <input type="reset" value="Reset" class="btn-glow primary reset" onclick="reset()" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- scripts -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="~/Scripts/Admin/js/bootstrap.min.js"></script>
+        <script src="~/Scripts/Admin/js/theme.js"></script>
+        <script>
+            function reset() {
+                document.getElementById("LoginForm").reset();
+            }
+        </script>
+    </body>
+    </html>
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        <h6>Log in</h6>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "alert" })
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Registration Number", @required = "required" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "" })
+                        <div class="remember">
+                            @Html.CheckBoxFor(m => m.RememberMe, new { @id = "remember-me" })
+                            <label for="remember-me">Remember me</label>
+                        </div>
+                        <input type="submit" value="Sign in" class="btn-glow primary login" />
+                        <input type="reset" value="Reset" class="btn-glow primary reset" />
+                    }
 *@

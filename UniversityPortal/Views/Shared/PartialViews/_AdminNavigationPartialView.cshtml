@@ -1,112 +1,138 @@
 ﻿@using UniversityPortal.WebUI.HtmlHelpers
 
-<ul id="dashboard-menu">
-    <li class="@Html.IfActive("Home", "Index")">
-        <div class="@Html.ActiveList("RolesAdmin")">
-            <div class="arrow"></div>
-            <div class="arrow_border"></div>
-        </div>
-        <a href="#">
-            <i class="icon-home"></i>
-            <span>Dashboard</span>
-        </a>
-    </li>
-    
-    <li class="@Html.IfActive("RolesAdmin", "UsersAdmin", "News", "Events")">
-        <div class="@Html.ActiveList("RolesAdmin", "UsersAdmin", "News", "Events")">
-            <div class="arrow"></div>
-            <div class="arrow_border"></div>
-        </div>
-        <a class="dropdown-toggle" href="#">
-            <i class="icon-group"></i>
-            <span>Users</span>
-            <i class="icon-chevron-down"></i>
-        </a>
-        <ul class="submenu">
-            <li class="@Html.IfActive("RolesAdmin", "Index")">
-                @Html.ActionLink("Roles", "Index", "RolesAdmin")
-            </li>
-            <li class="@Html.IfActive("UsersAdmin", "Index")">
-                @Html.ActionLink("Users", "Index", "UsersAdmin")
-            </li>
-            <li class="@Html.IfActive("Events", "Index")">
-                @Html.ActionLink("Events", "Index", "Events")
-            </li>
-            <li class="@Html.IfActive("News", "Index")">
-                @Html.ActionLink("News", "Index", "News")
-            </li>
-            <li class="@Html.IfActive("Jobs", "Index")">
-                @Html.ActionLink("Jobs", "Index", "Jobs")
-            </li>
-            <li class="@Html.IfActive("Testimonials", "Index")">
-                @Html.ActionLink("Testimonials", "Index", "Testimonial")
-            </li>
-        </ul>
-    </li>
-</ul>
+<div class="subnavbar-inner">
+    <div class="container">
+        <ul class="mainnav">
+            <li>@Html.ActionLink("Add Departments", "Create", "Department")</li>
+            <li>@Html.ActionLink("View Department", "Index", "Department")</li>
+            <li>@Html.ActionLink("Add Course", "Create", "Courses")</li>
+            <li>@Html.ActionLink("View Course", "Index", "Courses")</li>
+            <li>@Html.ActionLink("Add Teacher", "Create", "Teacher")</li>
+            <li>@Html.ActionLink("View Teacher", "Index", "Teacher")</li>
+            <li>@Html.ActionLink("Assign Course", "Create", "AssignCourse")</li>
+            <li>@Html.ActionLink("View Course Status", "ViewCourseStatus", "AssignCourse")</li>
+            <li>@Html.ActionLink("Add Student", "Create", "Student")</li>
+            <li>@Html.ActionLink("View Student", "Index", "Student")</li>
+            <li>@Html.ActionLink("Allocate Room", "Create", "RoomAllocation")</li>
+            <li>@Html.ActionLink("Room States", "RoomAllocationView", "RoomAllocation")</li>
+            <li>@Html.ActionLink("Add Course", "Create", "EnrollCourse")</li>
+            <li>@Html.ActionLink("View Status", "Index", "EnrollCourse")</li>
+            <li>@Html.ActionLink("Result Enrty", "Create", "ResultEntry")</li>
+            <li>@Html.ActionLink("View Result", "ViewResult", "ResultEntry")</li>
 
-@*Url.Action("index", "RolesAdmin")
-<li>
-    <a class="dropdown-toggle" href="#">
-        <i class="icon-edit"></i>
-        <span>Forms</span>
-        <i class="icon-chevron-down"></i>
-    </a>
-    <ul class="submenu">
-        <li><a href="form-showcase.html">Form showcase</a></li>
-        <li><a href="form-wizard.html">Form wizard</a></li>
-    </ul>
-</li>
-<li>
-    <a href="gallery.html">
-        <i class="icon-picture"></i>
-        <span>Gallery</span>
-    </a>
-</li>
-<li>
-    <a href="calendar.html">
-        <i class="icon-calendar-empty"></i>
-        <span>Calendar</span>
-    </a>
-</li>
-<li>
-    <a class="dropdown-toggle" href="tables.html">
-        <i class="icon-th-large"></i>
-        <span>Tables</span>
-        <i class="icon-chevron-down"></i>
-    </a>
-    <ul class="submenu">
-        <li><a href="tables.html">Custom tables</a></li>
-        <li><a href="datatables.html">DataTables</a></li>
-    </ul>
-</li>
-<li>
-    <a class="dropdown-toggle ui-elements" href="#">
-        <i class="icon-code-fork"></i>
-        <span>UI Elements</span>
-        <i class="icon-chevron-down"></i>
-    </a>
-    <ul class="submenu">
-        <li><a href="ui-elements.html">UI Elements</a></li>
-        <li><a href="icons.html">Icons</a></li>
-    </ul>
-</li>
-<li>
-    <a href="personal-info.html">
-        <i class="icon-cog"></i>
-        <span>My Info</span>
-    </a>
-</li>
-<li>
-    <a class="dropdown-toggle" href="#">
-        <i class="icon-share-alt"></i>
-        <span>Extras</span>
-        <i class="icon-chevron-down"></i>
-    </a>
-    <ul class="submenu">
-        <li><a href="code-editor.html">Code editor</a></li>
-        <li><a href="grids.html">Grids</a></li>
-        <li><a href="signin.html">Sign in</a></li>
-        <li><a href="signup.html">Sign up</a></li>
-    </ul>
-</li>*@
+        </ul>
+    </div>
+</div>
+
+
+            @*<div class="subnavbar-inner">
+                <div class="container">
+                    <ul class="mainnav">
+                        <li class="active">
+                            <a href="index.html">
+                                <i class="icon-dashboard">
+                                </i>
+                                <span>
+                                    Dashboard
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="reports.html">
+                                <i class="icon-list-alt"></i>
+                                <span>
+                                    Reports
+                                </span>
+                            </a>
+                        </li>
+                        <li class="subnavbar-open-right">
+                            <a href="guidely.html">
+                                <i class="icon-facetime-video"></i>
+                                <span>
+                                    App Tour
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="charts.html">
+                                <i class="icon-bar-chart"></i>
+                                <span>
+                                    Charts
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shortcodes.html">
+                                <i class="icon-code"></i>
+                                <span>
+                                    Shortcodes
+                                </span>
+                            </a>
+                        </li>
+                        <li class="dropdown subnavbar-open-right">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-long-arrow-down"></i>
+                                <span>
+                                    Drops
+                                </span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="icons.html">Icons</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li class="subnavbar-open-right"><a href="pricing.html">Pricing Plans</a></li>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="signup.html">Signup</a></li>
+                                <li class="subnavbar-open-right"><a href="error.html">404</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                 /container 
+            </div>*@
+
+
+            @*<ul id="dashboard-menu">
+                    <li class="@Html.IfActive("Home", "Index")">
+                        <div class="@Html.ActiveList("RolesAdmin")">
+                            <div class="arrow"></div>
+                            <div class="arrow_border"></div>
+                        </div>
+                        <a href="#">
+                            <i class="icon-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="@Html.IfActive("RolesAdmin", "UsersAdmin", "News", "Events")">
+                        <div class="@Html.ActiveList("RolesAdmin", "UsersAdmin", "News", "Events")">
+                            <div class="arrow"></div>
+                            <div class="arrow_border"></div>
+                        </div>
+                        <a class="dropdown-toggle" href="#">
+                            <i class="icon-group"></i>
+                            <span>Users</span>
+                            <i class="icon-chevron-down"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li class="@Html.IfActive("RolesAdmin", "Index")">
+                                @Html.ActionLink("Roles", "Index", "RolesAdmin")
+                            </li>
+                            <li class="@Html.IfActive("UsersAdmin", "Index")">
+                                @Html.ActionLink("Users", "Index", "UsersAdmin")
+                            </li>
+                            <li class="@Html.IfActive("Events", "Index")">
+                                @Html.ActionLink("Events", "Index", "Events")
+                            </li>
+                            <li class="@Html.IfActive("News", "Index")">
+                                @Html.ActionLink("News", "Index", "News")
+                            </li>
+                            <li class="@Html.IfActive("Jobs", "Index")">
+                                @Html.ActionLink("Jobs", "Index", "Jobs")
+                            </li>
+                            <li class="@Html.IfActive("Testimonials", "Index")">
+                                @Html.ActionLink("Testimonials", "Index", "Testimonial")
+                            </li>
+                        </ul>
+                    </li>
+                </ul>*@

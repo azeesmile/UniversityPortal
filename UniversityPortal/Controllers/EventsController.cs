@@ -18,7 +18,7 @@ namespace UniversityPortal.Controllers
         // GET: /Events/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Events.ToListAsync());
+            return View(await db.Event.ToListAsync());
         }
 
         // GET: /Events/Details/5
@@ -28,7 +28,7 @@ namespace UniversityPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Events.FindAsync(id);
+            Event @event = await db.Event.FindAsync(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -49,7 +49,7 @@ namespace UniversityPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
+                db.Event.Add(@event);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -64,7 +64,7 @@ namespace UniversityPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Events.FindAsync(id);
+            Event @event = await db.Event.FindAsync(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -93,7 +93,7 @@ namespace UniversityPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Events.FindAsync(id);
+            Event @event = await db.Event.FindAsync(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -106,8 +106,8 @@ namespace UniversityPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Event @event = await db.Events.FindAsync(id);
-            db.Events.Remove(@event);
+            Event @event = await db.Event.FindAsync(id);
+            db.Event.Remove(@event);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
